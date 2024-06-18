@@ -58,7 +58,7 @@ uploaded_file = st.sidebar.file_uploader("Upload a PNG or JPEG file", type=["png
 if uploaded_file:
     file_analysis = handle_file_upload(uploaded_file)
     if file_analysis:
-        st.markdown("### Analysis Result")
+        st.markdown("## Analysis Result")
 
         initial_analysis = file_analysis.get("initial_analysis", "No initial analysis provided.")
         challenged_analysis = file_analysis.get("challenged_analysis", "No challenged analysis provided.")

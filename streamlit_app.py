@@ -40,7 +40,7 @@ def handle_file_upload(uploaded_file):
         if uploaded_file:
             # Make an API request to the /v2/analyse_map endpoint with the file
             files = {'file': uploaded_file}
-            response = requests.post('https://api.example.com/v2/analyse_map', files=files)
+            response = requests.post('https://api.wardleymaps.ai/v1/querywardleyvideos', files=files)
 
             if response.status_code == 200:
                 return response.json()
@@ -58,4 +58,3 @@ if uploaded_file:
     if file_analysis:
         st.sidebar.markdown("### Analysis Result")
         st.sidebar.write(file_analysis)
-

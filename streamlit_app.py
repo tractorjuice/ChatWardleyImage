@@ -35,7 +35,7 @@ def handle_file_upload(uploaded_file):
     try:
         if uploaded_file:
             # Display the uploaded image
-            st.image(uploaded_file, caption="Uploaded Wardley Map", use_column_width=True, width=800)
+            st.image(uploaded_file, caption="Uploaded Wardley Map", width=800)
 
             # Make an API request to the /v2/analyse_map endpoint with the file
             files = {'file': uploaded_file}

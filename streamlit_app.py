@@ -59,6 +59,32 @@ def handle_file_upload(uploaded_file):
         st.error(f"Error uploading file: {e}")
         return None
 
+def check_password():
+    """Returns `True` if the user had the correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if hmac.compare_digest(st.session_state["PASSWORD"], st.secrets["PASSWORD"]):
+            st.session_state["PASSWORD_CORRECT"] = True
+            del st.session_state["PASSWORD"]  # Don't store the password.
+        else:
+            st.session_state["PASSWORD_CORRECT"] = False
+
+    # Return True if the password is validated.
+    if st.session_state.get("PASSWORD_CORRECT", False):
+        return True
+
+    # Show input for password.
+    st.text_input(
+        "Password", type="password", on_change=password_entered, key="PASSWORD"
+    )
+    if "PASSWORD_CORRECT" in st.session_state:
+        st.error("😕 Password incorrect")
+    return False
+
+if not check_password():
+    st.stop()  # Do not continue if check_password is not True.
+
 uploaded_file = st.sidebar.file_uploader("Upload a JPEG file", type=["jpeg"])
 
 if uploaded_file:

@@ -47,31 +47,3 @@ def handle_file_upload(uploaded_file):
 
 uploaded_file = st.sidebar.file_uploader("Upload a text file", type=["txt", "pdf", "docx"])
 
-for message in st.session_state.messages:
-    if message["role"] in ["user", "assistant"]:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
-
-if query := st.chat_input("What question do you have for the book?"):
-    st.session_state.messages.append({"role": "user", "content": query})
-    with st.chat_message("user"):
-        st.markdown(query)
-
-    with st.spinner():
-        with st.chat_message("assistant"):
-            response = st.session_state.chain(query)
-            st.markdown(response['answer'])
-
-        with st.expander("Source"):
-                source_documents = response['source_documents']
-                for index, document in enumerate(source_documents):
-                    # Safely retrieve metadata using `get` to avoid KeyError
-                    chapter_details = document.metadata.get('Chapter', 'Not provided')
-                    section_details = document.metadata.get('Section', 'Not provided')
-                    st.markdown(f":blue[Source {index + 1}]")
-                    st.markdown(f"{chapter_details}")
-                    st.markdown(f"Section: {section_details}")
-
-        st.divider()
-
-    st.session_state.messages.append({"role": "assistant", "content": response['answer']})

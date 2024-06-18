@@ -6,7 +6,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 st.set_page_config(page_title="Chat with your Wardley Map")
-st.title("Chat with Simon Wardley's Book")
+st.title("Chat with your Wardley Map")
 st.sidebar.markdown("# Have a chat with your using AI")
 st.sidebar.markdown("Developed by Mark Craddock](https://twitter.com/mcraddock)", unsafe_allow_html=True)
 st.sidebar.markdown("Current Version: 1.3.0")
@@ -46,4 +46,3 @@ def handle_file_upload(uploaded_file):
         return None
 
 uploaded_file = st.sidebar.file_uploader("Upload a text file", type=["txt", "pdf", "docx"])
-

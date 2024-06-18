@@ -4,9 +4,6 @@ import streamlit as st
 MODEL = "gpt-3.5-turbo"
 DEBUG = True # True to overwrite files that already exist
 
-if "session_id" not in st.session_state:
-    st.session_state.session_id = str(uuid.uuid4())
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -15,7 +12,6 @@ st.title("Chat with Simon Wardley's Book")
 st.sidebar.markdown("# Have a chat with your using AI")
 st.sidebar.markdown("Developed by Mark Craddock](https://twitter.com/mcraddock)", unsafe_allow_html=True)
 st.sidebar.markdown("Current Version: 1.3.0")
-#st.sidebar.markdown(st.session_state.session_id)
 st.sidebar.markdown("Wardley Mapping is provided courtesy of Simon Wardley and licensed Creative Commons Attribution Share-Alike.")
 st.sidebar.divider()
 

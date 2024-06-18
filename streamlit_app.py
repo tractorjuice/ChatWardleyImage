@@ -1,7 +1,6 @@
 import os, uuid
 import streamlit as st
 
-MODEL = "gpt-3.5-turbo"
 DEBUG = True # True to overwrite files that already exist
 
 if "messages" not in st.session_state:

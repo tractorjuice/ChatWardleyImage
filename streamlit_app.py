@@ -4,11 +4,6 @@ import streamlit as st
 MODEL = "gpt-3.5-turbo"
 DEBUG = True # True to overwrite files that already exist
 
-os.environ["LANGCHAIN_TRACING_V2"] = "true"
-os.environ["LANGCHAIN_ENDPOINT"] = "https://api.smith.langchain.com"
-os.environ["LANGCHAIN_PROJECT"] = st.secrets["LANGCHAIN_PROJECT"]
-os.environ["LANGCHAIN_API_KEY"] = st.secrets["LANGCHAIN_API_KEY"]
-
 if "session_id" not in st.session_state:
     st.session_state.session_id = str(uuid.uuid4())
 

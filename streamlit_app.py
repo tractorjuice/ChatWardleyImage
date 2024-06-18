@@ -56,7 +56,7 @@ def handle_file_upload(uploaded_file):
         st.error(f"Error uploading file: {e}")
         return None
 
-uploaded_file = st.sidebar.file_uploader("Upload a PNG or JPEG file", type=["png", "jpeg"])
+uploaded_file = st.sidebar.file_uploader("Upload a JPEG file", type=["jpeg"])
 
 if uploaded_file:
     file_analysis = handle_file_upload(uploaded_file)

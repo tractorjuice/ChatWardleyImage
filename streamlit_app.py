@@ -42,7 +42,7 @@ def handle_file_upload(uploaded_file):
             bearer_token = st.secrets["BEARER_TOKEN"]
             headers = {'Authorization': f'Bearer {bearer_token}'}
             with st.spinner("Analysing your Wardley Map ...."):
-                response = requests.post('https://api.wardleymaps.ai/v1/analyse-wardleymap-image', files=files, headers=headers, timeout=240)
+                response = requests.post('https://api.wardleymaps.ai/v1/analyse-wardleymap-image', files=files, headers=headers)
 
             if response.status_code == 200:
                 return response.json()
@@ -64,6 +64,10 @@ if uploaded_file:
         challenged_analysis = file_analysis.get("challenged_analysis", "No challenged analysis provided.")
         final_analysis = file_analysis.get("final_analysis", "No final analysis provided.")
 
+        with st.expander("Final", expanded=True):
+            st.markdown("#### Final Analysis")
+            st.write(final_analysis)
+
         with st.expander("Initial"):
             st.markdown("#### Initial Analysis")
             st.write(initial_analysis)
@@ -71,7 +75,3 @@ if uploaded_file:
         with st.expander("Challenge"):
             st.markdown("#### Challenged Analysis")
             st.write(challenged_analysis)
-
-        with st.expander("Final"):
-            st.markdown("#### Final Analysis")
-            st.write(final_analysis)

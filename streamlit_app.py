@@ -64,11 +64,14 @@ if uploaded_file:
         challenged_analysis = file_analysis.get("challenged_analysis", "No challenged analysis provided.")
         final_analysis = file_analysis.get("final_analysis", "No final analysis provided.")
 
-        st.markdown("#### Initial Analysis")
-        st.write(initial_analysis)
+        with st.expander("Initial"):
+            st.markdown("#### Initial Analysis")
+            st.write(initial_analysis)
 
-        st.markdown("#### Challenged Analysis")
-        st.write(challenged_analysis)
+        with st.expander("Challenge"):
+            st.markdown("#### Challenged Analysis")
+            st.write(challenged_analysis)
 
-        st.markdown("#### Final Analysis")
-        st.write(final_analysis)
+        with st.expander("Final"):
+            st.markdown("#### Final Analysis")
+            st.write(final_analysis)

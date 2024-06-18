@@ -2,11 +2,10 @@ import streamlit as st
 import requests
 import os
 
-st.set_page_config(page_title="Chat with your Wardley Map", layout="wide")
-st.title("Chat with your Wardley Map")
-st.sidebar.markdown("# Have a chat with your using AI")
+st.set_page_config(page_title="Strategy Report", layout="wide")
+st.title("Strategy Report")
 st.sidebar.markdown("Developed by Mark Craddock](https://twitter.com/mcraddock)", unsafe_allow_html=True)
-st.sidebar.markdown("Current Version: 1.3.0")
+st.sidebar.markdown("Current Version: 0.2.0")
 st.sidebar.markdown("Wardley Mapping is provided courtesy of Simon Wardley and licensed Creative Commons Attribution Share-Alike.")
 st.sidebar.divider()
 

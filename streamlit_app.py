@@ -1,6 +1,6 @@
 import streamlit as st
-
-DEBUG = True # True to overwrite files that already exist
+import requests
+import os
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -38,11 +38,24 @@ st.html(custom_css_styling)
 def handle_file_upload(uploaded_file):
     try:
         if uploaded_file:
-            bytes_data = uploaded_file.read()
-            text = bytes_data.decode('utf-8')
-            return text
+            # Make an API request to the /v2/analyse_map endpoint with the file
+            files = {'file': uploaded_file}
+            response = requests.post('https://api.example.com/v2/analyse_map', files=files)
+
+            if response.status_code == 200:
+                return response.json()
+            else:
+                st.error(f"Error: {response.status_code}, {response.text}")
+                return None
     except Exception as e:
-        st.error(f"Error reading file: {e}")
+        st.error(f"Error uploading file: {e}")
         return None
 
-uploaded_file = st.sidebar.file_uploader("Upload a text file", type=["png", "jpeg"])
+uploaded_file = st.sidebar.file_uploader("Upload a PNG or JPEG file", type=["png", "jpeg"])
+
+if uploaded_file:
+    file_analysis = handle_file_upload(uploaded_file)
+    if file_analysis:
+        st.sidebar.markdown("### Analysis Result")
+        st.sidebar.write(file_analysis)
+

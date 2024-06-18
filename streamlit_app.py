@@ -41,7 +41,8 @@ def handle_file_upload(uploaded_file):
             files = {'file': uploaded_file}
             bearer_token = st.secrets["BEARER_TOKEN"]
             headers = {'Authorization': f'Bearer {bearer_token}'}
-            response = requests.post('https://api.wardleymaps.ai/v1/analyse-wardleymap-image', files=files, headers=headers, timeout=240)
+            with st.spinner("Analysing your Wardley Map ..."):
+                response = requests.post('https://api.wardleymaps.ai/v1/analyse-wardleymap-image', files=files, headers=headers)
 
             if response.status_code == 200:
                 return response.json()

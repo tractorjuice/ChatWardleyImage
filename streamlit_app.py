@@ -45,4 +45,4 @@ def handle_file_upload(uploaded_file):
         st.error(f"Error reading file: {e}")
         return None
 
-uploaded_file = st.sidebar.file_uploader("Upload a text file", type=["txt", "pdf", "docx"])
+uploaded_file = st.sidebar.file_uploader("Upload a text file", type=["png", "jpeg"])

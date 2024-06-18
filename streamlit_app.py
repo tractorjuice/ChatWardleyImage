@@ -1,4 +1,3 @@
-import os, uuid
 import streamlit as st
 
 DEBUG = True # True to overwrite files that already exist

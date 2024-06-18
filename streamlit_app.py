@@ -46,6 +46,9 @@ def handle_file_upload(uploaded_file):
 
             if response.status_code == 200:
                 return response.json()
+            elif response.status_code == 429:
+                st.error("Too many requests. Please wait a while before trying again.")
+                return None
             else:
                 st.error(f"Error: {response.status_code}, {response.text}")
                 return None

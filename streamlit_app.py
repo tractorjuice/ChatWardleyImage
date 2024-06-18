@@ -2,10 +2,7 @@ import streamlit as st
 import requests
 import os
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-st.set_page_config(page_title="Chat with your Wardley Map")
+st.set_page_config(page_title="Chat with your Wardley Map", layout="wide")
 st.title("Chat with your Wardley Map")
 st.sidebar.markdown("# Have a chat with your using AI")
 st.sidebar.markdown("Developed by Mark Craddock](https://twitter.com/mcraddock)", unsafe_allow_html=True)
@@ -40,7 +37,7 @@ def handle_file_upload(uploaded_file):
         if uploaded_file:
             # Display the uploaded image
             st.image(uploaded_file, caption="Uploaded Wardley Map", use_column_width=True)
-       
+
             # Make an API request to the /v2/analyse_map endpoint with the file
             files = {'file': uploaded_file}
             bearer_token = st.secrets["BEARER_TOKEN"]

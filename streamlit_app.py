@@ -38,6 +38,9 @@ st.html(custom_css_styling)
 def handle_file_upload(uploaded_file):
     try:
         if uploaded_file:
+            # Display the uploaded image
+            st.image(uploaded_file, caption="Uploaded Wardley Map", use_column_width=True)
+       
             # Make an API request to the /v2/analyse_map endpoint with the file
             files = {'file': uploaded_file}
             bearer_token = st.secrets["BEARER_TOKEN"]

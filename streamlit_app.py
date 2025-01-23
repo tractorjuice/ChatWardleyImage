@@ -31,7 +31,7 @@ custom_css_styling = f"""
 """
 st.html(custom_css_styling)
 
-@st.cache_data
+@st.cache_data(ttl=3600)  # Cache for 1 hour
 def handle_file_upload(uploaded_file):
     try:
         if uploaded_file:
@@ -86,7 +86,8 @@ def check_password():
 if not check_password():
     st.stop()  # Do not continue if check_password is not True.
 
-uploaded_file = st.sidebar.file_uploader("Upload a JPEG file", type=["jpeg"])
+with st.spinner("Uploading file..."):
+    uploaded_file = st.sidebar.file_uploader("Upload a JPEG file", type=["jpeg"])
 
 if uploaded_file:
     file_analysis = handle_file_upload(uploaded_file)

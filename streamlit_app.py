@@ -32,6 +32,7 @@ custom_css_styling = f"""
 st.html(custom_css_styling)
 
 @st.cache_data(ttl=3600)  # Cache for 1 hour
+
 def handle_file_upload(uploaded_file):
     try:
         if uploaded_file:
